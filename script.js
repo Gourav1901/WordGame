@@ -4,6 +4,15 @@ const ANSWER_LENGTH =5;
 async function init() {
     let currentGuess = '';
     let currrentRow = 0;
+
+    const res = await fetch("https://words.dev-apis.com/word-of-the-day")
+    const resObj = await res.json();
+    const word = resObj.word.toUpperCase();
+    setLoading(false);
+
+    console.log(word);
+
+
    function addLetter (letter){
       if(currentGuess.length < ANSWER_LENGTH  ) {
         currentGuess += letter;
@@ -35,7 +44,7 @@ async function init() {
 
       const action = event.key;
 
-      console.log(action);
+     
 
       if(action === 'Enter') {
         commit();
@@ -54,6 +63,10 @@ async function init() {
 
   function isLetter(letter){
     return /^[a-zA-Z]$/.test(letter);
+  }
+
+  function setLoading(isLoading){
+    loadingDiv.classList.toggle('show', !isLoading )
   }
 
     init();
