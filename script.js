@@ -23,6 +23,12 @@ async function init() {
       currentGuess = '';
 
      }
+     
+    function backspace() {
+      currentGuess = currentGuess.substring(0, currentGuess.length-1)
+      letters[ANSWER_LENGTH * currrentRow + currentGuess.length].innerText="";
+    }
+
 
 
   document.addEventListener('keydown', function handleKeyPress (event) {
